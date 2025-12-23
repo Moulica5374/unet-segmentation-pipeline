@@ -30,9 +30,12 @@ jobs:
         run: |
           gcloud auth configure-docker
       
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }} .
+          docker buildx build --platform linux/amd64 --load -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }} .
           docker tag gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }} gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:latest
       
       - name: Push to Google Container Registry
@@ -49,3 +52,4 @@ jobs:
             --allow-unauthenticated \
             --memory 2Gi \
             --timeout 300
+
