@@ -1,0 +1,14 @@
+```
+__pycache__/
+*.pyc
+*.pth
+*.pt
+checkpoints/
+*.ipynb
+.DS_Store
+venv/
+env/
+*.log
+Human-Segmentation-Dataset-master/
+data/
+gcp-key.json

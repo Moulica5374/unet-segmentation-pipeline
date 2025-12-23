@@ -1,0 +1,21 @@
+model:
+  encoder: timm-efficientnet-b0
+  encoder_weights: imagenet
+  in_channels: 3
+  classes: 1
+
+training:
+  epochs: 25
+  batch_size: 16
+  learning_rate: 0.003
+  device: cuda
+
+data:
+  image_size: 320
+  train_split: 0.8
+  csv_file: data/train.csv
+  data_dir: /Users/moulicagoli/Documents/unet-segmentation-prod/
+
+augmentation:
+  horizontal_flip_prob: 0.5
+  vertical_flip_prob: 0.5
